@@ -1,47 +1,55 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
-
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ setShowLogin }) => {
   const [currentMenu, setCurrentMenu] = useState("Home");
 
   return (
     <div className="navbar">
-      <img src={assets.logo} alt="logo" className="logo" />
+      <Link to="/">
+        <img src={assets.logo} alt="logo" className="logo" />
+      </Link>
       <ul className="navbar-menu">
-        <li
+        <Link
+          to="/"
           onClick={() => setCurrentMenu("Home")}
           className={currentMenu === "Home" ? "active" : ""}
         >
           Home
-        </li>
-        <li
+        </Link>
+        <a
+          href="#explore-menu"
           onClick={() => setCurrentMenu("Menu")}
           className={currentMenu === "Menu" ? "active" : ""}
         >
           Menu
-        </li>
-        <li
+        </a>
+        <a
+          href="#appDownload"
           onClick={() => setCurrentMenu("Mobile app")}
           className={currentMenu === "Mobile app" ? "active" : ""}
         >
           Mobile app
-        </li>
-        <li
+        </a>
+        <a
+          href="#footer"
           onClick={() => setCurrentMenu("Contact us")}
           className={currentMenu === "Contact us" ? "active" : ""}
         >
           Contact us
-        </li>
+        </a>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-search-icon">
-          <img src={assets.basket_icon} alt="" />
+          <Link to="/cart">
+            <img src={assets.basket_icon} alt="" />
+          </Link>
           <div className="dot"></div>
         </div>
-        <button>Sign In</button>
+        <button onClick={() => setShowLogin(true)}>Sign In</button>
       </div>
     </div>
   );
